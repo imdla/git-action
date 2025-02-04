@@ -1,0 +1,14 @@
+name: WorkFlow
+
+on:
+  push:
+    branches:
+      - features/*
+
+jobs:
+  work-flows:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Print Test
+        run: echo "Test"
