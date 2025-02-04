@@ -3,7 +3,7 @@ name: Hello World
 on:
   push:
     paths:
-      - ".github/workflows/01_hello-world.yml"
+      - '.github/workflows/01_hello-world.yml'
     branches:
       - main
       - develop
@@ -14,3 +14,10 @@ jobs:
     steps:
       - name: Print Hello World
         run: echo "Hello, World!"
+
+  hello-secret:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Print Secret
+        run: echo '${{ secrets.MY_SECRET }}'
