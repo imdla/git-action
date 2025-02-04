@@ -6,6 +6,7 @@ on:
       - ".github/workflows/01_hello-world.yml"
     branches:
       - main
+      - develop
 jobs:
   hello-world:
     runs-on: ubuntu-24.04
