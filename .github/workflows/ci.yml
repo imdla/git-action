@@ -3,12 +3,12 @@ name: WorkFlow
 on:
   push:
     branches:
-      - features/*
+      - deploy/*
 
 jobs:
-  work-flows:
+  test:
     runs-on: ubuntu-24.04
 
     steps:
-      - name: Print Test
-        run: echo "Test"
+      - name: test
+        run: echo "test"
