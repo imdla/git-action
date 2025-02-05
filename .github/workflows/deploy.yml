@@ -45,3 +45,27 @@ jobs:
       # 4. 이미지 push
       - name: Docker Image Push
         run: docker compose push
+
+      # 5. workspace에서 원격 서버로 compose와 .env 복사
+      - name: Copy .env / docker-compose.yml
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "docker-compose.yml, .env"
+          target: "~/work-directory"
+
+      # 6. 이미지 pul & 컨테이너 up
+      - name: Pull Image & Up Container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/work-directory
+            docker compose pull
+            docker compose up -d
