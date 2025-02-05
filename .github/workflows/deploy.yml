@@ -54,8 +54,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "docker-compose.yml, .env"
-          target: "~/work-directory"
+          source: 'docker-compose.yml, .env'
+          target: '~/work-directory'
 
       # 6. 이미지 pul & 컨테이너 up
       - name: Pull Image & Up Container
@@ -68,4 +68,5 @@ jobs:
           script: |
             cd ~/work-directory
             docker compose pull
+            docker compose down
             docker compose up -d
