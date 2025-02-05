@@ -1,10 +1,10 @@
-import styles from "./ArticleForm.module.css";
-import { useState } from "react";
-import articlesApi from "../api/articlesApi";
+import styles from './ArticleForm.module.css';
+import { useState } from 'react';
+import articlesApi from '../api/articlesApi';
 
 const INITIAL_FORM_DATA = {
-  title: "",
-  content: "",
+  title: '',
+  content: '',
   file: null,
 };
 
@@ -28,7 +28,7 @@ export default function ArticleForm({ fetchArticles }) {
       fetchArticles();
       resetForm();
     } catch (error) {
-      console.error("ERROR : ", error);
+      console.error('ERROR : ', error);
     }
   };
 
@@ -53,7 +53,7 @@ export default function ArticleForm({ fetchArticles }) {
           className={styles.textarea}
         />
         <button type="submit" className={styles.button}>
-          Article 생성
+          생성
         </button>
       </form>
     </div>
