@@ -29,4 +29,4 @@ jobs:
       # 파일 복사
       # 로컬에서 복사할 파일, remote에 복사될 위치
       - name: copy file to remote server
-        run: scp -P ${{ secrets.SSH_PORT }} README.md ${{ secrets.SSH_USERNANE }}@${{ secrets.SSH_HOST }}:.~/
+        run: scp -P ${{ secrets.SSH_PORT }} README.md ${{ secrets.SSH_USERNANE }}@${{ secrets.SSH_HOST }}:~/
