@@ -39,10 +39,15 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          # 1. work-directory 폴더 생성
+          # 2. work-directory 경로 이동
           script: |
             touch 'hello-world1.txt'
             touch 'hello-world2.txt'
             touch 'hello-world3.txt'
+            mkdir work-directory
+            cd work-directory
+            touch 'hello-world4.txt'
 
       # scp-actions
       - name: Copy README.md file
@@ -53,6 +58,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT}}
           # 복사할 파일 이름, 여러개의 파일을 복사할 때는 쉼표(,)로 파일 이름을 구분한다
-          source: "README.md" 
+          source: 'README.md'
           # 원격 서버에 복사될 위치
-          target: "~/"
+          target: '~/'
