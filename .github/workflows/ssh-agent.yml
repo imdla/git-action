@@ -31,6 +31,7 @@ jobs:
       - name: copy file to remote server
         run: scp -P ${{ secrets.SSH_PORT }} README.md ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/
 
+      # ssh-actions
       - name: Run remote command test
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -42,3 +43,14 @@ jobs:
             touch 'hello-world1.txt'
             touch 'hello-world2.txt'
             touch 'hello-world3.txt'
+
+      # scp-actions
+      - name: Copy README.md file
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "READMD.md"
+          target: "~/"
