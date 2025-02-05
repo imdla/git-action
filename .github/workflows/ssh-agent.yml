@@ -25,3 +25,8 @@ jobs:
       # SSH 연결위한 명령어
       - name: create file on remote server
         run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "touch 'hello-world.txt'"
+
+      # 파일 복사
+      # 로컬에서 복사할 파일, remote에 복사될 위치
+      - name: copy file to remote server
+        run: scp -P ${{ secret.SSH_PORT }} README.md ${{ secrets.SSH_USERNANE }}@${{ secrets.SSH_HOST }}:.~/
