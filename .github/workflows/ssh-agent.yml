@@ -17,7 +17,7 @@ jobs:
       # 원격 서버를 신뢰할 수 있는 서버로 등록하는 과정
       # known_hosts : 원격 서버들의 지문이 저장된 파일
       - name: ADD Remote Server Fingerprint to Known Hosts
-        run: ssh-keyscan -H -p ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts || true
+        run: ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts || true
 
       # SSH 연결위한 명령어
       - name: create file on remote server
