@@ -53,7 +53,7 @@ jobs:
       # 기존 Docker 빌더 : Cache 파일 저장 & 불러오기 경로 제어 불가
       - name: Creat Buildkit 빌더
         run: |
-          docker build create --use --name buidkit
+          docker buildx create --use --name buildkit
           docker buildx use buildkit
 
       # 2. 이미지 빌드
