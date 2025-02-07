@@ -58,7 +58,8 @@ jobs:
 
       # 2. 이미지 빌드
       - name: Docker Image Build
-        run: docker compose -f docker-compose-actions-cache.yml --build-arg BUILDKIT_INLINE_CACHE=1
+        run: |
+         docker compose -f docker-compose-actions-cache.yml build --build-arg BUILDKIT_INLINE_CACHE=1
 
       # 3. Docker 로그인
       - name: Login DockerHub
