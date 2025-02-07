@@ -104,7 +104,7 @@ jobs:
             Repository: ${{ github.repository }}
             Branch: ${{ github.ref_name }}
             Commit: ${{ github.event.head_commit.message }}
-          color: 0x0000ff
+          color: 0xBAFF1A
 
       # Discord 알림 - 배포 성공
       - name: Discord Notificaton - Success
@@ -117,7 +117,7 @@ jobs:
             Repository: ${{ github.repository }}
             Branch: ${{ github.ref_name }}
             Commit: ${{ github.event.head_commit.message }}
-          color: 0x00ff00
+          color: 0xFF9BFD
 
       # Discord 알림 - 배포 실패
       - name: Discord Notificaton - Failure
@@ -130,4 +130,4 @@ jobs:
             Repository: ${{ github.repository }}
             Branch: ${{ github.ref_name }}
             Commit: ${{ github.event.head_commit.message }}
-          color: 0xff0000
+          color: 0xBBBBBB
