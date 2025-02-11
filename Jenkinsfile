@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-      
         stage('Build Start') {
           steps {
             script {
@@ -53,9 +52,6 @@ pipeline {
             }
           }
         }
-
-        
-    
     }
 
     post {
