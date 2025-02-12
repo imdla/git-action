@@ -1,5 +1,5 @@
 import styles from './ArticleForm.module.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import articlesApi from '../api/articlesApi';
 
 const INITIAL_FORM_DATA = {
@@ -10,6 +10,8 @@ const INITIAL_FORM_DATA = {
 
 export default function ArticleForm({ fetchArticles }) {
   const [inputData, setInputData] = useState(INITIAL_FORM_DATA);
+  // 파일 input 요소에 대한 참조
+  const fileInputRef = useRef(null);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -18,18 +20,32 @@ export default function ArticleForm({ fetchArticles }) {
 
   const resetForm = () => {
     setInputData(INITIAL_FORM_DATA);
+    // 업로드 폼을 초기화한다.
+    if (fileInputRef.current) fileInputRef.current.value = null;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', inputData.title);
+    formData.append('content', inputData.content);
+
+    if (inputData.file) {
+      formData.append('file', inputData.file);
+    }
 
     try {
-      await articlesApi.postArticle(inputData);
+      await articlesApi.postArticle(formData);
       fetchArticles();
       resetForm();
     } catch (error) {
       console.error('ERROR : ', error);
     }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setInputData((prev) => ({ ...prev, file }));
   };
 
   return (
@@ -51,6 +67,13 @@ export default function ArticleForm({ fetchArticles }) {
           onChange={handleFormChange}
           placeholder="content 입력"
           className={styles.textarea}
+        />
+        <input
+          type="file"
+          id="file"
+          name="file"
+          accept="image/*"
+          onChange={handleFileChange}
         />
         <button type="submit" className={styles.button}>
           생성
